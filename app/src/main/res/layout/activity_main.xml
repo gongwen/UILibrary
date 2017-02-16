@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.gw.ui.library.MainActivity">
+
+    <com.gw.ui.library.view.TabIndicatorView
+        android:id="@+id/tabIndicatorView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="15sp"
+        app:borderWidth="2dp"
+        app:cornerRadius="15dp"
+        app:normalColor="#ffffff"
+        app:selectedColor="#089FE6"
+        app:separatorWidth="2dp"
+        app:titles="指数对比1|指数对比2|指数对比3" />
+</RelativeLayout>
