@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -15,11 +16,15 @@ import android.view.View;
 
 import com.gw.ui.library.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by GongWen on 17/2/16.
  */
 
 public class TabIndicatorView extends View {
+    private final ArrayList<OnTabSelectedListener> mSelectedListeners = new ArrayList<>();
+
     private final int DEFAULT_SELECTED_COLOR = 0xff089FE6;
     private final int DEFAULT_NORMAL_COLOR = 0xffffffff;
     private final int DEFAULT_CORNER_RADIUS = 0;
@@ -170,11 +175,53 @@ public class TabIndicatorView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                currentPosition = (int) (event.getX() / itemWidth);
+                selectPosition((int) (event.getX() / itemWidth));
                 postInvalidate();
                 break;
         }
         return super.onTouchEvent(event);
+    }
+
+    //点击事件监听
+    public void selectPosition(int selectedPosition) {
+
+        if (currentPosition == selectedPosition) {
+            dispatchTabReselected(selectedPosition);
+        } else {
+            dispatchTabSelected(selectedPosition);
+        }
+        this.currentPosition = selectedPosition;
+    }
+
+    public void addOnTabSelectedListener(@NonNull OnTabSelectedListener listener) {
+        if (!mSelectedListeners.contains(listener)) {
+            mSelectedListeners.add(listener);
+        }
+    }
+
+    private void dispatchTabSelected(@NonNull final int selectedPosition) {
+        for (int i = mSelectedListeners.size() - 1; i >= 0; i--) {
+            mSelectedListeners.get(i).onTabSelected(selectedPosition);
+        }
+    }
+
+    private void dispatchTabReselected(@NonNull final int selectedPosition) {
+        for (int i = mSelectedListeners.size() - 1; i >= 0; i--) {
+            mSelectedListeners.get(i).onTabReselected(selectedPosition);
+        }
+    }
+
+    public interface OnTabSelectedListener {
+
+        /**
+         * @param position The tab that was selected
+         */
+        void onTabSelected(int position);
+
+        /**
+         * @param position The position that was reselected.
+         */
+        void onTabReselected(int position);
     }
 
     //属性设置
