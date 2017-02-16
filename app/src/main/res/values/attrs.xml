@@ -9,7 +9,7 @@
         <attr name="cornerRadius" format="dimension|reference" />
 
         <!-- 外部边框的width -->
-        <attr name="borderWidth" format="dimension|reference" />
+        <attr name="boundWidth" format="dimension|reference" />
         <!-- 内部边框的width -->
         <attr name="separatorWidth" format="dimension|reference" />
 

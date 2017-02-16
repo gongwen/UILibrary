@@ -22,14 +22,14 @@ import com.gw.ui.library.R;
 public class TabIndicatorView extends View {
     private final int DEFAULT_SELECTED_COLOR = 0xff089FE6;
     private final int DEFAULT_NORMAL_COLOR = 0xffffffff;
-    private final int DEFAULT_CORNER_RADIUS = 15;
+    private final int DEFAULT_CORNER_RADIUS = 0;
 
-    private int selectedColor;//选中背景颜色
-    private int normalColor;//未选中背景颜色
+    private int selectedColor;//选中 背景颜色
+    private int normalColor;//未选中 背景颜色
 
     private float cornerRadius; //圆角半径
     private float borderWidth = 4;//边框的粗细
-    private float separatorWidth = borderWidth / 2;//分割线的粗细
+    private float separatorWidth = 2;//分割线的粗细
 
     private String[] mTitles;//标题数组，通过'|'分隔开
     private float mTextSize = 15;
@@ -58,7 +58,7 @@ public class TabIndicatorView extends View {
         normalColor = a.getColor(R.styleable.TabIndicatorView_normalColor, DEFAULT_NORMAL_COLOR);
 
         cornerRadius = a.getDimensionPixelSize(R.styleable.TabIndicatorView_cornerRadius, DEFAULT_CORNER_RADIUS);
-        borderWidth = a.getDimension(R.styleable.TabIndicatorView_borderWidth, borderWidth);
+        borderWidth = a.getDimension(R.styleable.TabIndicatorView_boundWidth, borderWidth);
         separatorWidth = a.getDimension(R.styleable.TabIndicatorView_separatorWidth, separatorWidth);
 
         mTextSize = a.getDimensionPixelSize(R.styleable.TabIndicatorView_android_textSize, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, mTextSize, context.getResources().getDisplayMetrics()));
