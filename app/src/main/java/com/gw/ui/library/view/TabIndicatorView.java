@@ -37,8 +37,9 @@ public class TabIndicatorView extends View {
     private float borderWidth = 4;//边框的粗细
     private float separatorWidth = 2;//分割线的粗细
 
+    //Mode为MeasureSpec.EXACTLY时，不生效
     private float paddingVertical = 10;// 纵向上下边距
-    private float paddingHorizon = 15;//横向上下边距
+    private float paddingHorizon = 15;//横向左右边距
 
     private String[] mTitles;//标题数组，通过'|'分隔开
     private float mTextSize = 15;
