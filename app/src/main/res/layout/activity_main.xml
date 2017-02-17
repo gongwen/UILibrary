@@ -14,12 +14,12 @@
     <com.gw.ui.library.view.TabIndicatorView
         android:id="@+id/tabIndicatorView"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:textSize="15sp"
         app:borderWidth="2dp"
         app:cornerRadius="15dp"
         app:normalColor="#ffffff"
         app:selectedColor="#089FE6"
         app:separatorWidth="2dp"
-        app:titles="指数对比1|指数对比2|指数对比3" />
+        app:titles="指数|指数对|指数对比" />
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
@@ -36,6 +37,9 @@ public class TabIndicatorView extends View {
     private float borderWidth = 4;//边框的粗细
     private float separatorWidth = 2;//分割线的粗细
 
+    private float paddingVertical = 10;// 纵向上下边距
+    private float paddingHorizon = 15;//横向上下边距
+
     private String[] mTitles;//标题数组，通过'|'分隔开
     private float mTextSize = 15;
 
@@ -46,6 +50,9 @@ public class TabIndicatorView extends View {
     private float itemWidth;
     private int itemCount;
     private int currentPosition = 0;
+
+    private Rect bounds = new Rect();
+    private int widthMode, heightMode;
 
     public TabIndicatorView(Context context) {
         this(context, null, 0);
@@ -66,6 +73,9 @@ public class TabIndicatorView extends View {
         borderWidth = a.getDimension(R.styleable.TabIndicatorView_boundWidth, borderWidth);
         separatorWidth = a.getDimension(R.styleable.TabIndicatorView_separatorWidth, separatorWidth);
 
+        paddingVertical = a.getDimension(R.styleable.TabIndicatorView_paddingVertical, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, paddingVertical, context.getResources().getDisplayMetrics()));
+        paddingHorizon = a.getDimension(R.styleable.TabIndicatorView_paddingHorizon, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, paddingHorizon, context.getResources().getDisplayMetrics()));
+
         mTextSize = a.getDimensionPixelSize(R.styleable.TabIndicatorView_android_textSize, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, mTextSize, context.getResources().getDisplayMetrics()));
 
         String titleArray = a.getString(R.styleable.TabIndicatorView_titles);
@@ -80,6 +90,84 @@ public class TabIndicatorView extends View {
         mTextPaint.setTextAlign(Paint.Align.CENTER);
         mTextPaint.setTextSize(mTextSize);
         fm = mTextPaint.getFontMetrics();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        itemWidth = 0;
+        setMeasuredDimension(getWidth(widthMeasureSpec), getHeight(heightMeasureSpec));
+    }
+
+    public int getWidth(int widthMeasureSpec) {
+        int width;
+
+        widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+
+
+        switch (widthMode) {
+            case MeasureSpec.EXACTLY:
+                width = widthSize;
+                break;
+            case MeasureSpec.AT_MOST:
+            case MeasureSpec.UNSPECIFIED:
+            default:
+                float defaultWidth = 0;
+                if (mTitles != null && mTitles.length > 0) {
+                    for (int i = 0; i < mTitles.length; i++) {
+                        mTextPaint.getTextBounds(mTitles[i], 0, mTitles[i].length(), bounds);
+                        if (itemWidth < bounds.width()) {
+                            itemWidth = bounds.width();
+                        }
+                    }
+                    defaultWidth = (itemWidth + 2 * paddingHorizon) * mTitles.length;
+                }
+                if (widthMode == MeasureSpec.AT_MOST) {
+                    if (widthSize <= defaultWidth) {
+                        width = widthSize;
+                    } else {
+                        width = (int) defaultWidth;
+                    }
+                } else {
+                    width = (int) defaultWidth;
+                }
+                break;
+        }
+        return width;
+    }
+
+    public int getHeight(int heightMeasureSpec) {
+        int height;
+
+        heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        switch (heightMode) {
+            case MeasureSpec.EXACTLY:
+                height = heightSize;
+                break;
+            case MeasureSpec.AT_MOST:
+            case MeasureSpec.UNSPECIFIED:
+            default:
+                float defaultHeight = 0;
+
+                if (mTitles != null && mTitles.length > 0) {
+                    mTextPaint.getTextBounds(mTitles[0], 0, mTitles[0].length(), bounds);
+                    defaultHeight = bounds.height() + 2 * paddingVertical;
+                }
+                if (heightMode == MeasureSpec.AT_MOST) {
+                    if (heightSize <= defaultHeight) {
+                        height = heightSize;
+                    } else {
+                        height = (int) defaultHeight;
+                    }
+                } else {
+                    height = (int) defaultHeight;
+                }
+                break;
+        }
+        return height;
     }
 
     @Override
@@ -227,7 +315,11 @@ public class TabIndicatorView extends View {
     //属性设置
     public void setTitles(String[] titles) {
         this.mTitles = titles;
-        postInvalidate();
+        if (heightMode == MeasureSpec.EXACTLY) {
+            postInvalidate();
+        } else {
+            requestLayout();
+        }
     }
 
     public void setTextSize(float mTextSize) {
@@ -260,6 +352,20 @@ public class TabIndicatorView extends View {
     public void setSeparatorWidth(float separatorWidth) {
         this.separatorWidth = separatorWidth;
         postInvalidate();
+    }
+
+    public void setPaddingVertical(float paddingVertical) {
+        this.paddingVertical = paddingVertical;
+        if (heightMode != MeasureSpec.EXACTLY) {
+            postInvalidate();
+        }
+    }
+
+    public void setPaddingHorizon(float paddingHorizon) {
+        this.paddingHorizon = paddingHorizon;
+        if (heightMode != MeasureSpec.EXACTLY) {
+            postInvalidate();
+        }
     }
 
     public void setCurrentPosition(int currentPosition) {

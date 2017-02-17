@@ -15,5 +15,8 @@
 
         <attr name="titles" format="string|reference" />
 
+        <attr name="paddingVertical" format="dimension|reference" />
+        <attr name="paddingHorizon" format="dimension|reference" />
+
     </declare-styleable>
 </resources>
