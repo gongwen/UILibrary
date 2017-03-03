@@ -2,11 +2,13 @@ package com.gw.ui.library;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
+import com.gw.ui.library.util.ActivityUtil;
 import com.gw.ui.library.view.TabIndicatorView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +26,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "onTabReselected " + position, Toast.LENGTH_SHORT).show();
             }
         });
+        findViewById(R.id.swipeBack).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.swipeBack:
+                ActivityUtil.goSwipeBackLayout(this);
+                break;
+        }
     }
 }
