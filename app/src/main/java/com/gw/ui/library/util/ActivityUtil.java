@@ -3,6 +3,7 @@ package com.gw.ui.library.util;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.gw.ui.library.activity.SceneActivity;
 import com.gw.ui.library.activity.SwipeBackActivity;
 
 /**
@@ -12,5 +13,9 @@ import com.gw.ui.library.activity.SwipeBackActivity;
 public class ActivityUtil {
     public static void goSwipeBackLayout(Activity mActivity) {
         mActivity.startActivity(new Intent(mActivity, SwipeBackActivity.class));
+    }
+
+    public static void goSceneActivity(Activity mActivity) {
+        mActivity.startActivity(new Intent(mActivity, SceneActivity.class));
     }
 }

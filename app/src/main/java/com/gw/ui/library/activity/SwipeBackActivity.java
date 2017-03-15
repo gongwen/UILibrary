@@ -17,7 +17,7 @@ public class SwipeBackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SwipeBackLayout swipeBackLayout = new SwipeBackLayout(this);
         swipeBackLayout.attachToActivity(this);
-        setContentView(R.layout.swipe_back_activity);
+        setContentView(R.layout.activity_swipe_back);
     }
 
     @Override

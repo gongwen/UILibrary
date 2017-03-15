@@ -30,4 +30,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="右滑关闭页面示例" />
+
+    <Button
+        android:id="@+id/mTransition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Transition动画示例" />
 </LinearLayout>
