@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         findViewById(R.id.swipeBack).setOnClickListener(this);
         findViewById(R.id.mTransition).setOnClickListener(this);
+        findViewById(R.id.mDrawable).setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.mTransition:
                 ActivityUtil.goSceneActivity(this);
+                break;
+            case R.id.mDrawable:
+                ActivityUtil.goDrawableActivity(this);
                 break;
         }
     }

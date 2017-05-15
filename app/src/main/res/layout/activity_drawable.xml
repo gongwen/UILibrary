@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/rectShapeView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"></View>
+
+        <View
+            android:id="@+id/roundShapeView1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"></View>
+
+        <View
+            android:id="@+id/roundShapeView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"></View>
+
+        <View
+            android:id="@+id/ovalShapeView"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"></View>
+
+        <View
+            android:id="@+id/arcShapeView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"></View>
+
+        <ImageView
+            android:id="@+id/arcImageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"></ImageView>
+
+        <View
+            android:id="@+id/pathShapeView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"></View>
+
+        <View
+            android:id="@+id/gdView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"></View>
+    </LinearLayout>
+</ScrollView>
