@@ -39,6 +39,13 @@
         android:text="Transition动画示例" />
 
     <Button
+        android:id="@+id/mShape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="shape示例" />
+
+    <Button
         android:id="@+id/mDrawable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

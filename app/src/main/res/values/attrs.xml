@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="cornerRadius" format="dimension|reference" />
+
     <declare-styleable name="TabIndicatorView">
         <attr name="android:textSize" />
 
         <attr name="selectedColor" format="color|reference" />
         <attr name="normalColor" format="color|reference" />
-
-        <attr name="cornerRadius" format="dimension|reference" />
+        <attr name="cornerRadius"></attr>
 
         <!-- 外部边框的width -->
         <attr name="boundWidth" format="dimension|reference" />
@@ -18,5 +19,10 @@
         <attr name="paddingVertical" format="dimension|reference" />
         <attr name="paddingHorizon" format="dimension|reference" />
 
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="circular" format="boolean" />
+        <attr name="cornerRadius"></attr>
     </declare-styleable>
 </resources>

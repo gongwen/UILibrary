@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,52 +10,30 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <View
-            android:id="@+id/rectShapeView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"></View>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/headerImage"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/header"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
 
-        <View
-            android:id="@+id/roundShapeView1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"></View>
+        <com.gw.ui.library.view.CircleImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/header" />
 
-        <View
-            android:id="@+id/roundShapeView2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"></View>
-
-        <View
-            android:id="@+id/ovalShapeView"
-            android:layout_width="100dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"></View>
-
-        <View
-            android:id="@+id/arcShapeView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"></View>
-
-        <ImageView
-            android:id="@+id/arcImageView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"></ImageView>
-
-        <View
-            android:id="@+id/pathShapeView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"></View>
-
-        <View
-            android:id="@+id/gdView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"></View>
+        <com.gw.ui.library.view.RoundImageView
+            android:id="@+id/roundImageView"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/header"
+            app:cornerRadius="25dp" />
     </LinearLayout>
 </ScrollView>
